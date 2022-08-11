@@ -1,0 +1,8 @@
+class Solution:
+    def sortSentence(self, s: str) -> str:
+        string_lst = s.split(" ")
+        res = ["yo"]*len(string_lst)
+        
+        for string in string_lst:
+            res[int(string[-1])-1] = string[:-1]
+        return " ".join(res)
