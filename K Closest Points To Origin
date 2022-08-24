@@ -1,0 +1,13 @@
+class Solution:
+    def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
+        pq = []
+        heapify(pq)
+        for point in points:
+            dist = self.dist_to_origin(point)
+            heappush(pq,(-dist,point))                
+            if len(pq) > k :
+                heappop(pq)                
+        return map(lambda x: x[1],pq)
+    
+    def dist_to_origin(self,point):
+        return sqrt(pow(point[0],2)+ pow(point[1],2))
