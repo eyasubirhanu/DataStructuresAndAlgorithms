@@ -1,0 +1,17 @@
+def findOriginalArray(self, nums: List[int]) -> List[int]:
+	nums = Counter(nums)
+	ans = []
+	if 0 in nums:
+		if nums[0]%2==0:
+			ans.extend([0]*(nums[0]//2))
+			nums.pop(0)
+		else:
+			return ans
+
+	for n in sorted(nums):
+		if n*2 in nums:
+			k = min(nums[n*2], nums[n])
+			nums[n*2] -= k
+			nums[n] -= k
+			ans.extend([n]*k)
+	return ans if all(v==0 for _, v in nums.items()) else []
