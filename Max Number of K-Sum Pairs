@@ -1,0 +1,9 @@
+class Solution:
+    def maxOperations(self, nums: List[int], k: int) -> int:
+        dic = dict(Counter(nums))
+        cnt = 0
+        for i in dic:
+            if (k - i in dic) and (dic[k - i] > 0):
+                cnt += min(dic[i], dic[k - i])
+        return cnt // 2
+        
