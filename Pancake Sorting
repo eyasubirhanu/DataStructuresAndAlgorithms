@@ -1,0 +1,32 @@
+def pancakeSort(self, arr: List[int]) -> List[int]:
+        n=len(arr)
+        res=[]
+        if n<=1:
+            return res
+        ct=0
+        mx=arr[0]
+        idx=0
+        for i in range(n-1):
+            if arr[i]>arr[i+1]:
+                ct+=1
+            if arr[i+1]>mx:
+                mx=arr[i+1]
+                idx=i+1
+        if ct==0:
+            return res
+        elif n-1==ct:
+            return [n]
+        if idx==n-1:
+            arr.pop()
+            sub=self.pancakeSort(arr)
+            return sub
+        elif idx==0:
+            arr=arr[::-1]
+            arr.pop()
+            sub=self.pancakeSort(arr)
+            return [n]+sub
+        res=[idx+1,n]
+        arr=arr[(idx+1):][::-1]+arr[0:(idx+1)]
+        arr.pop()
+        sub=self.pancakeSort(arr)
+        return res+sub
