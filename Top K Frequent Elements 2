@@ -1,0 +1,8 @@
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        dic = {}
+        for n in nums:
+            dic[n] =  dic.get(n, 0) + 1
+        sortDic = dict(sorted(dic.items(), key=lambda item: item[1]))
+        listResult =list(sortDic)[-k:]
+        return listResult
